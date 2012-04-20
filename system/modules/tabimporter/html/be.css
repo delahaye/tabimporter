@@ -1,3 +1,7 @@
+form#tl_tabimporter_tables #ctrl_fieldsTarget, form#tl_tabimporter_tables #ctrl_fieldsSource, form#tl_tabimporter_tables  #ctrl_fieldCount {
+	background-color: #dddddd;
+}
+
 #tl_tabimporter_log {
 	padding: 18px;
 }
@@ -53,4 +57,3 @@
 .tl_tabimporter_txt li {
 	margin-bottom: 18px;
 }
-
