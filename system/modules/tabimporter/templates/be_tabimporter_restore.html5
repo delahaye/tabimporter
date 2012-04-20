@@ -1,0 +1,60 @@
+<div id="tl_buttons">
+<a href="<?php echo $this->href; ?>" class="header_back" title="<?php echo $this->title; ?>"><?php echo $this->button; ?></a>
+</div>
+
+<h2 class="sub_headline"><?php echo $this->restoretitle; ?></h2>
+
+<div id="tl_tabimporter" class="maintenance_<?php echo $this->isActive ? 'active' : 'inactive'; ?>">
+
+<div id="tl_rebuild_index">
+<?php echo $this->description; ?>
+</div>
+
+<?php if ($this->messageOk): ?>
+<div class="tl_message" style="border: 1px solid #8AB858;background: #F3F8EE;padding:10px;"><?php echo $this->messageOk; ?></div>
+<?php endif; ?>
+<?php if ($this->messageFail): ?>
+<div class="tl_message" style="border: 1px solid #cc5555;background: #faeeee;padding:10px;"><?php echo $this->messageFail; ?></div>
+<?php endif; ?>
+<?php if ($this->messageFatal): ?>
+<div class="tl_message" style="border: 1px solid #cc5555;background: #faeeee;padding:10px;"><?php echo $this->messageFatal; ?></div>
+<?php endif; ?>
+
+
+<form action="<?php echo $this->action; ?>" class="tl_form" method="post">
+<div class="tl_formbody_edit">
+<input type="hidden" name="FORM_SUBMIT" value="tl_tabimporter_restore">
+<input type="hidden" name="REQUEST_TOKEN" value="<?php echo REQUEST_TOKEN; ?>">
+<div class="tl_tbox block">
+
+<?php if (count($this->tables)>0): ?>
+	<?php foreach($this->tables as $original=>$version): ?>
+	<fieldset class="tl_radio_container">
+	<legend><?php echo $this->tablename.'´'.$original; ?>´:</legend>
+		<input type="radio" class="tl_radio" name="<?php echo $original; ?>" id="<?php echo $original; ?>_0" value="" checked="checked" onfocus="Backend.getScrollOffset();"> <label for="<?php echo $original; ?>_0"><?php echo $this->keepCurrent; ?></label><br>
+		<?php foreach($version as $k=>$v): ?>
+			<input type="radio" class="tl_radio" name="<?php echo $original; ?>" value="<?php echo $k; ?>" id="<?php echo $k; ?>" onfocus="Backend.getScrollOffset();"> <label for="<?php echo $k; ?>"><?php echo $v; ?></label><br>
+		<?php endforeach; ?>
+	</fieldset>
+	<?php endforeach; ?>
+<?php else: ?>
+	<p class="tl_error"><?php echo $this->nothing; ?></p>
+<?php endif; ?>
+
+</div>
+</div>
+<?php if (count($this->tables)>0): ?>
+	<div class="tl_submit_container">
+	  <input type="submit" name="restore" id="restore" class="tl_submit" value="<?php echo $this->submit; ?>"> 
+	</div>
+<?php endif; ?>
+</form>
+
+</div>
+
+<form action="<?php echo $this->action; ?>" class="tl_form" method="get">
+<div class="tl_submit_container">
+  <input type="hidden" name="do" value="tabimporter">
+  <input type="submit" id="index" class="tl_submit" value="<?php echo $this->button; ?>"> 
+</div>
+</form>

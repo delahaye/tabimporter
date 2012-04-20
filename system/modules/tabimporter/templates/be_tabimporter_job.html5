@@ -1,0 +1,78 @@
+
+<h2 class="sub_headline"><?php echo $this->jobtitle; ?></h2>
+
+<div>
+
+<?php if ($this->isRunning): ?>
+
+	<div id="tl_tabimporter_log">
+	<p id="index_loading"><?php echo $this->loading; ?></p>
+	<?php if ($this->jobSim): ?><p><?php echo $this->jobSim; ?></p><?php endif; ?>
+
+	<?php if ($this->errorMessage): ?><p class="tl_error"><?php echo $this->errorMessage; ?></p><?php endif; ?>
+
+	<div class="content"><?php echo $this->content; ?></div>
+
+	<?php if ($this->nextLink): ?>
+	<noscript><a href="<?php echo $this->nextLink; ?>"><?php echo $GLOBALS['TL_LANG']['tl_tabimporter']['nextLink']; ?></a></noscript>
+	<script>setTimeout('window.location="<?php echo $this->nextLink; ?>"', 10);</script>
+	<?php endif; ?>
+
+	</div>
+
+	<form action="contao/main.php" class="tl_form" method="get">
+		<div class="tl_submit_container">
+		<br><br>
+		</div>
+	</form>
+
+<?php elseif ($this->isComplete): ?>
+
+	<div id="tl_tabimporter_log">
+	<p id="index_complete"><?php echo $this->complete; ?></p>
+	<?php if ($this->jobSim): ?><p><?php echo $this->jobSim; ?></p><?php endif; ?>
+
+	<?php if ($this->errorMessage): ?><p class="tl_error"><?php echo $this->errorMessage; ?></p><?php endif; ?>
+
+	<div class="content"><?php echo $this->content; ?></div>
+	
+	<div><?php echo $this->execTime; ?></div>
+
+	</div>
+
+	<form action="contao/main.php" class="tl_form" method="get">
+		<div class="tl_submit_container">
+			<input type="hidden" name="do" value="tabimporter">
+			<input type="hidden" name="table" value="<?php echo $this->tablename; ?>">
+			<input type="hidden" name="id" value="<?php echo $this->runid; ?>">
+			<input type="submit" id="index" class="tl_submit" value="<?php echo $this->jobendSubmit; ?>"> 
+		</div>
+	</form>
+
+<?php else: ?>
+
+	<div id="tl_tabimporter_log">
+	<?php if ($this->errorMessage): ?><p class="tl_error"><?php echo $this->errorMessage; ?></p><?php endif; ?>
+
+	<div class="content"><?php echo $this->jobstart; ?></div>
+
+	</div>
+
+	<form action="contao/main.php" class="tl_form" method="get">
+	<div class="tl_formbody_edit">
+		<input type="hidden" name="act" value="import">
+		<input type="hidden" name="key" value="runjob">
+		<input type="hidden" name="do" value="tabimporter">
+		<input type="hidden" name="id" value="<?php echo $this->jobid; ?>">
+	</div>
+	</div>
+	<div class="tl_submit_container">
+		<?php if($this->jobstartSubmit): ?>
+		<input type="submit" id="index" class="tl_submit" value="<?php echo $this->jobstartSubmit; ?>">
+		<input type="checkbox" style="tl_checkbox" name="sim" id="tl_tabimporter_sim" value="1"> <label for="tl_tabimporter_sim"><?php echo $GLOBALS['TL_LANG']['tl_tabimporter']['jobstartSim']; ?></label>
+		<?php else: ?>
+		<br><br>
+		<?php endif; ?>
+	</div>
+	</form>
+<?php endif; ?>

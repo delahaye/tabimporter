@@ -1,0 +1,56 @@
+#tl_tabimporter_log {
+	padding: 18px;
+}
+
+#tl_tabimporter_log .content{
+	margin-bottom: 36px;
+}
+
+#tl_tabimporter_log a {
+	display: block;
+	margin-bottom: 18px;
+}
+
+
+.tl_tabimporter_step {
+	font-weight:bold;
+	border-bottom:1px solid #dddddd;
+	margin-top:20px;
+}
+
+.tl_tabimporter_ok {
+	color:#008000;
+}
+
+.tl_tabimporter_warn {
+	color:#B2B400;
+}
+
+.tl_tabimporter_error {
+	color:#ff8000;
+}
+
+.tl_tabimporter_abort {
+	color:#f80000;
+}
+
+.header_restore {
+	background: url("../../../../system/modules/tabimporter/html/icon_restore.png") no-repeat scroll left center transparent;
+	padding: 2px 0 3px 18px;
+}
+
+.header_howto {
+	background: url("../../../../system/modules/tabimporter/html/icon_howto.png") no-repeat scroll left center transparent;
+	padding: 2px 0 3px 18px;
+}
+
+.tl_tabimporter_txt {
+	line-height: 1.5em;
+	padding: 0 18px 0 18px;
+	margin-top: 32px;
+}
+
+.tl_tabimporter_txt li {
+	margin-bottom: 18px;
+}
+
