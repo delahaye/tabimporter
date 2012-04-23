@@ -161,7 +161,6 @@ class tl_tabimporter_runs extends Backend
 	{
 		parent::__construct();
 		$this->import('BackendUser', 'User');
-		$this->tabImporter = new tabImporter;
 	}
 
 	/**

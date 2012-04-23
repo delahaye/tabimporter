@@ -29,9 +29,9 @@
  */
 
 /**
- * Class tabImporter
+ * TabimporterSource_csv
  *
- * Provides methods used for table imports.
+ * Provides methods used for csv imports.
  * @copyright  Christian de la Haye 2012
  * @author     Christian de la Haye 
  * @package    tabimporter 

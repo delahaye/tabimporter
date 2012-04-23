@@ -29,7 +29,7 @@
  */
 
 /**
- * Class tabImporter
+ * Class Tabimporter
  *
  * Provides methods used for tble imports.
  * @copyright  Christian de la Haye 2012

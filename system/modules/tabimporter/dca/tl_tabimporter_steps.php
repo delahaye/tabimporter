@@ -205,7 +205,7 @@ class tl_tabimporter_steps extends Backend
 	{
 		parent::__construct();
 		$this->import('BackendUser', 'User');
-		$this->tabImporter = new tabImporter;
+		$this->tabImporter = new Tabimporter;
 	}
 
 	/**

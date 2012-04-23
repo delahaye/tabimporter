@@ -29,7 +29,7 @@
  */
 
 /**
- * Class tabImporter
+ * Class TabimporterSource_db
  *
  * Provides methods used for table imports.
  * @copyright  Christian de la Haye 2012

@@ -135,7 +135,6 @@ class tl_tabimporter_runsteps extends Backend
 		parent::__construct();
 
 		$this->import('BackendUser', 'User');
-		$this->tabImporter = new tabImporter;
 	}
 
 
