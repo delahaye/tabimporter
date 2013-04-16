@@ -438,7 +438,7 @@ class Tabimporter extends Backend
 						// delete data missing in target, but existing in the source table
 						elseif(in_array('missing',$arrTableimport['deleteOnStart']) && is_array($arrTableimport['existentKeysSource']) && is_array($arrTableimport['existentKeysTarget']))
 						{
-							$arrToDelete=array_diff($arrTableimport['existentKeysTarget'],$arrTableimport['existentKeysSource']);
+							$arrToDelete=array_diff($arrTableimport['existentKeysSource'],$arrTableimport['existentKeysTarget']);
 							if(count($arrToDelete>0))
 							{
 								$arrCheck = $this->performSQL("DELETE FROM ".$arrTableimport['targetTable']."_tabimport WHERE ".$arrTableimport['deleteKeyField']." IN ('".implode('\',\'',$arrToDelete)."')",array(),false);
