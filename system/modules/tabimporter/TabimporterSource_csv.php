@@ -82,19 +82,24 @@ class TabimporterSource_csv extends Backend
 			for($i=0;$i < sizeof($arrContent); $i++)
 			{
 				$arrContent[$i] = $this->String->splitCsv($arrContent[$i], $strDelimiter);
-				
-				// get field names ba first line
-				if($arrTableimport['hasFieldnames'])
+				$arrNewContent = array();
+                
+                //skip first row with field names
+                if ($i == 0 && $arrTableimport['hasFieldnames']) continue;	
+                
+				// get field names of first line or set key to field_x
+				for($ii=0;$ii<sizeof($arrContent[$i]);$ii++)
 				{
-					for($ii=0;$ii<sizeof($arrContent[$i]);$ii++)
+
+					if($arrTableimport['hasFieldnames'])
 					{
-						$arrContent[$i][$arrContent[0][$ii]] = $arrContent[$i][$ii];
-						if($i>0)
-						{
-							unset($arrContent[$i][$ii]);
-						}
-					}
-				}
+						$arrNewContent[$arrContent[0][$ii]] = $arrContent[$i][$ii];	
+					}else{
+                        $arrNewContent['field_'.$ii] = $arrContent[$i][$ii];
+                    }
+                }
+               
+                $arrContent[$i] = $arrNewContent;                 
 
 			}
 
@@ -126,7 +131,7 @@ class TabimporterSource_csv extends Backend
 			$arrKeys[] = 
 				$arrData[($arrTableimport['hasFieldnames'] ? 
 				$arrTableimport['uniqueSource'] : 
-				str_replace('field_','',$arrTableimport['uniqueSource']))];
+				$arrTableimport['uniqueSource'])];
 		}
 
  		if(!$arrKeys || count($arrKeys)<1)
