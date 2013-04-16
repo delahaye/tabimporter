@@ -439,7 +439,7 @@ class Tabimporter extends Backend
 						elseif(in_array('missing',$arrTableimport['deleteOnStart']) && is_array($arrTableimport['existentKeysSource']) && is_array($arrTableimport['existentKeysTarget']))
 						{
 							$arrToDelete=array_diff($arrTableimport['existentKeysSource'],$arrTableimport['existentKeysTarget']);
-							if(count($arrToDelete>0))
+							if(count($arrToDelete)>0)
 							{
 								$arrCheck = $this->performSQL("DELETE FROM ".$arrTableimport['targetTable']."_tabimport WHERE ".$arrTableimport['deleteKeyField']." IN ('".implode('\',\'',$arrToDelete)."')",array(),false);
 								$this->updateStatus($arrCheck['result'], $objSteps->abortOnError, 
@@ -470,7 +470,7 @@ class Tabimporter extends Backend
 						{
 							$arrNotExistent=array_diff($arrTableimport['existentKeysSource'],$arrTableimport['existentKeysTarget']);
 							$arrToDelete=array_diff($arrTableimport['existentKeysTarget'],$arrNotExistent);
-							if(count($arrToDelete>0))
+							if(count($arrToDelete)>0)
 							{
 								$arrCheck = $this->performSQL("DELETE FROM ".$arrTableimport['targetTable']."_tabimport WHERE ".$arrTableimport['deleteKeyField']." IN ('".implode('\',\'',$arrToDelete)."')",array(),false);
 								$this->updateStatus($arrCheck['result'], $objSteps->abortOnError, 
