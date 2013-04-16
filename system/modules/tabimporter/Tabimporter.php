@@ -438,10 +438,10 @@ class Tabimporter extends Backend
 						// delete data missing in target, but existing in the source table
 						elseif(in_array('missing',$arrTableimport['deleteOnStart']) && is_array($arrTableimport['existentKeysSource']) && is_array($arrTableimport['existentKeysTarget']))
 						{
-							$arrToDelete=array_diff($arrTableimport['existentKeysSource'],$arrTableimport['existentKeysTarget']);
+							$arrToDelete=array_diff($arrTableimport['existentKeysTarget'],$arrTableimport['existentKeysSource']);
 							if(count($arrToDelete)>0)
 							{
-								$arrCheck = $this->performSQL("DELETE FROM ".$arrTableimport['targetTable']."_tabimport WHERE ".$arrTableimport['deleteKeyField']." IN ('".implode('\',\'',$arrToDelete)."')",array(),false);
+								$arrCheck = $this->performSQL("DELETE FROM ".$arrTableimport['targetTable']."_tabimport WHERE ".$arrTableimport['uniqueTarget']." IN ('".implode('\',\'',$arrToDelete)."')",array(),false);
 								$this->updateStatus($arrCheck['result'], $objSteps->abortOnError, 
 									$objSteps->title,
 									sprintf($GLOBALS['TL_LANG']['tl_tabimporter']['missing_ok'],$arrTableimport['targetTable']), 
@@ -472,7 +472,7 @@ class Tabimporter extends Backend
 							$arrToDelete=array_diff($arrTableimport['existentKeysTarget'],$arrNotExistent);
 							if(count($arrToDelete)>0)
 							{
-								$arrCheck = $this->performSQL("DELETE FROM ".$arrTableimport['targetTable']."_tabimport WHERE ".$arrTableimport['deleteKeyField']." IN ('".implode('\',\'',$arrToDelete)."')",array(),false);
+								$arrCheck = $this->performSQL("DELETE FROM ".$arrTableimport['targetTable']."_tabimport WHERE ".$arrTableimport['uniqueTarget']." IN ('".implode('\',\'',$arrToDelete)."')",array(),false);
 								$this->updateStatus($arrCheck['result'], $objSteps->abortOnError, 
 									$objSteps->title,
 									sprintf($GLOBALS['TL_LANG']['tl_tabimporter']['existent_ok'],$arrTableimport['targetTable']), 
@@ -955,7 +955,7 @@ class Tabimporter extends Backend
 		}
 		else
 		{
-			$objKeys = $this->Database->prepare("SELECT ".$arrTableimport['uniqueTarget']." FROM ".$arrTableimport['targetTable']." WHERE ".$arrTableimport['uniqueTarget']." IN ('".implode('\',\'',$arrTableimport['existentKeysSource'])."')")
+			$objKeys = $this->Database->prepare("SELECT ".$arrTableimport['uniqueTarget']." FROM ".$arrTableimport['targetTable']." ")
 				->executeUncached();
 
 			$arrKeys = $objKeys->fetchEach($arrTableimport['uniqueTarget']);
